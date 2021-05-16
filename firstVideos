@@ -1,0 +1,161 @@
+import com.phidgets.*;
+import com.phidgets.event.*;
+import java.lang.*;
+import java.util.*;
+import java.awt.Desktop;
+import java.io.*;
+
+
+
+public class videoOne {
+static Scanner console = new Scanner(System.in);
+
+	public static void main(String[] args) throws Exception{			
+	//	Desktop.getDesktop().open(new File(""));
+
+Process p = Runtime.getRuntime().exec("/Applications/VLC.app/Contents/MacOS/VLC /Users/challengerlearningcenterofthetwintierregioninc/Desktop/EM_Launch_Cockpit.mov");
+	
+	int serial = 109859;
+	InterfaceKitPhidget myPhidget = new InterfaceKitPhidget();
+
+	myPhidget.open(serial);
+	myPhidget.waitForAttachment();
+			//Launch Cockpit Video
+			System.out.println("Loading video");
+			Thread.sleep(1000); //wait for video to load
+			System.out.println("Video now playing");
+			//stand by for hydraulic lift
+			Thread.sleep(8900);
+			System.out.println("Angle seats up");
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(5500);
+			System.out.println("Jolt as seats stop angling");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(300);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);		
+			Thread.sleep(5000);
+			System.out.println("Takeoff jolt");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(250);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			
+			
+			Thread.sleep(30);
+			System.out.println("Light rocking");
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, true);
+			Thread.sleep(65420);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			System.out.println("Launch Cockpit video done");
+			
+				
+
+		
+			
+			//Descent Video 
+			p.destroy();
+			System.out.println("Loading video");
+			p = Runtime.getRuntime().exec("/Applications/VLC.app/Contents/MacOS/VLC /Users/challengerlearningcenterofthetwintierregioninc/Desktop/EM-Descent.mp4");
+			Thread.sleep(1000); //wait for video to load
+			System.out.println("Video is now playing");
+			System.out.println("Initiate light rock");
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, true);
+			Thread.sleep(13000);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			System.out.println("Descent video done");
+			
+			
+			//Landing Video
+			p.destroy();
+			System.out.println("Loading video");
+			p = Runtime.getRuntime().exec("/Applications/VLC.app/Contents/MacOS/VLC /Users/challengerlearningcenterofthetwintierregioninc/Desktop/EM-Landing.mp4");
+			Thread.sleep(1000); //wait for video to load
+			System.out.println("Video now playing");
+			Thread.sleep(21500);
+			System.out.println("Jolt, coming into orbit");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(250);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			
+			
+			System.out.println("Heavy rock, coming into orbit");
+			myPhidget.setOutputState(0,false);
+			myPhidget.setOutputState(1,false);	
+			myPhidget.setOutputState(2,true);
+			Thread.sleep(10500);
+			System.out.println("Jolt, part of rocket detaches");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(200);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			
+			System.out.println("Heavy rock");
+			myPhidget.setOutputState(0,false);
+			myPhidget.setOutputState(1,false);	
+			myPhidget.setOutputState(2,true);
+			
+			Thread.sleep(10400);
+			System.out.println("Jolt - parachute intiated");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(200);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			
+			
+			System.out.println("Light rock as shuttle initates landing");
+			myPhidget.setOutputState(0,false);
+			myPhidget.setOutputState(1,false);	
+			myPhidget.setOutputState(2,true);
+			
+			Thread.sleep(16300);
+			System.out.println("Shuttle landed - jolt and then stop rocking");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(250);
+			myPhidget.setOutputState(0, false);
+			myPhidget.setOutputState(1, true);
+			myPhidget.setOutputState(2, false);
+			Thread.sleep(5500);
+			System.out.println("Seats down - ship has landed");
+			myPhidget.setOutputState(0, true);
+			myPhidget.setOutputState(1, false);
+			myPhidget.setOutputState(2, false);
+			
+			System.out.println("Landing video done");
+	
+			
+	
+}
+		
+		
+		
+		
+}
